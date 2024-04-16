@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="administrator.css" />
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <script>
+        function loadContent(contentId, clickedElement) {
+            // Remove 'active' class from all menu items
+            const menuItems = document.querySelectorAll('.menu li');
+            menuItems.forEach(item => item.classList.remove('active'));
+    
+            // Add 'active' class to the clicked menu item
+            clickedElement.parentElement.classList.add('active');
+    
+            // Hide all content divs
+            const contentDivs = document.querySelectorAll('.main--content > div');
+            contentDivs.forEach(div => div.style.display = 'none');
+    
+            // Display the corresponding content div
+            const selectedContent = document.getElementById(contentId);
+            selectedContent.style.display = 'block';
+        }
+    
+        function toggleManageClassDropdown() {
+            const manageClassDropdown = document.querySelector('.manage-class .sub-menu');
+            manageClassDropdown.style.display = manageClassDropdown.style.display === 'block' ? 'none' : 'block';
+        }
+    
+        function toggleManageClassArmsDropdown() {
+            const manageClassArmsDropdown = document.querySelector('.manage-class-arms .sub-menu');
+            manageClassArmsDropdown.style.display = manageClassArmsDropdown.style.display === 'block' ? 'none' : 'block';
+        }
+    
+        function toggleManageTeachersDropdown() {
+            const manageTeachersDropdown = document.querySelector('.manage-teachers .sub-menu');
+            manageTeachersDropdown.style.display = manageTeachersDropdown.style.display === 'block' ? 'none' : 'block';
+        }
+    
+        function toggleManageStudentsDropdown() {
+            const manageStudentsDropdown = document.querySelector('.manage-students .sub-menu');
+            manageStudentsDropdown.style.display = manageStudentsDropdown.style.display === 'block' ? 'none' : 'block';
+        }
+    
+        function toggleManageSessionTermDropdown() {
+            const manageSessionTermDropdown = document.querySelector('.manage-session-term .sub-menu');
+            manageSessionTermDropdown.style.display = manageSessionTermDropdown.style.display === 'block' ? 'none' : 'block';
+        }
+        let classCount = 0;
+    
+        function saveClass() {
+            const classNameInput = document.getElementById('class-name-input');
+            const className = classNameInput.value.trim();
+    
+            if (className === '') {
+                alert('Please enter a class name.');
+                return;
+            }
+    
+            let classes = JSON.parse(localStorage.getItem('classes')) || [];
+            classes.push(className);
+            localStorage.setItem('classes', JSON.stringify(classes));
+    
+            const classTableBody = document.getElementById('class-table-body');
+            const newRow = document.createElement('tr');
+            classCount++;
+            newRow.innerHTML = `
+                <td>${classCount}</td>
+                <td>${className}</td>
+                <td><button onclick="editClass(this)">Edit</button></td>
+                <td><button onclick="deleteClass(this)">Delete</button></td>
+            `;
+            classTableBody.appendChild(newRow);
+    
+            document.getElementById('class-count').textContent = `Number of Entries: ${classCount}`;
+    
+            classNameInput.value = '';
+        }
+    
+        function editClass(button) {
+            const row = button.closest('tr');
+            const classNameCell = row.querySelector('td:nth-child(2)');
+            const newName = prompt('Enter new class name:', classNameCell.textContent.trim());
+    
+            if (newName !== null && newName.trim() !== '') {
+                classNameCell.textContent = newName.trim();
+            }
+        }
+    
+        function deleteClass(button) {
+            const row = button.closest('tr');
+            row.remove();
+            classCount--;
+    
+            document.getElementById('class-count').textContent = `Number of Entries: ${classCount}`;
+        }
+    
+        function loadClassesFromLocalStorage() {
+            const classTableBody = document.getElementById('class-table-body');
+            const classes = JSON.parse(localStorage.getItem('classes')) || [];
+    
+            classCount = classes.length;
+    
+            classTableBody.innerHTML = '';
+    
+            classes.forEach((className, index) => {
+                const newRow = document.createElement('tr');
+                newRow.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${className}</td>
+                    <td><button onclick="editClass(this)">Edit</button></td>
+                    <td><button onclick="deleteClass(this)">Delete</button></td>
+                `;
+                classTableBody.appendChild(newRow);
+            });
+    
+            document.getElementById('class-count').textContent = `Number of Entries: ${classCount}`;
+        }
+    
+        window.addEventListener('load', () => {
+            loadClassesFromLocalStorage(); // Load classes on page load
+            loadTeachersFromLocalStorage(); // Load teachers on page load
+        });
+    
+        function createClassDropdown() {
+            const classes = JSON.parse(localStorage.getItem('classes')) || [];
+            const classDropdown1 = document.getElementById('class-dropdown'); // for Create Class Arms
+            const classDropdown2 = document.getElementById('select-class-dropdown'); // for Create Class Teachers
+            const classArmDropdown = document.getElementById('select-class-arm-dropdown'); // for selecting class arms
+    
+            classes.forEach(className => {
+                const option1 = document.createElement('option');
+                option1.textContent = className;
+                option1.value = className;
+                classDropdown1.appendChild(option1);
+    
+                const option2 = document.createElement('option');
+                option2.textContent = className;
+                option2.value = className;
+                classDropdown2.appendChild(option2);
+            });
+    
+            const classArmsList = JSON.parse(localStorage.getItem('classArms')) || [];
+            classArmsList.forEach(classArm => {
+                const option = document.createElement('option');
+                option.textContent = classArm.classArmName;
+                option.value = classArm.classArmName;
+                classArmDropdown.appendChild(option);
+            });
+        }
+    
+        window.addEventListener('load', () => {
+            createClassDropdown(); // Load dropdown options on page load
+            updateTeacherTable(); // Update teacher table on page load
+        });
+    
+        function saveClassArm() {
+            const className = document.getElementById('class-dropdown').value.trim();
+            const classArmNameInput = document.getElementById('class-arm-name-input');
+            const classArmName = classArmNameInput.value.trim();
+    
+            if (className === '' || classArmName === '') {
+                alert('Please select a class and enter a class arm name.');
+                return;
+            }
+    
+            let classArms = JSON.parse(localStorage.getItem('classArms')) || [];
+            classArms.push({ className, classArmName });
+            localStorage.setItem('classArms', JSON.stringify(classArms));
+    
+            updateClassArmsTable(); // Update the class arms table
+    
+            classArmNameInput.value = '';
+    
+            alert('Class arm saved successfully.');
+        }
+    
+        function updateClassArmsTable() {
+            const classArmsTableBody = document.getElementById('class-arms-table-body');
+            const classArmsList = JSON.parse(localStorage.getItem('classArms')) || [];
+    
+            classArmsTableBody.innerHTML = ''; // Clear existing rows
+    
+            classArmsList.forEach((classArm, index) => {
+                const newRow = document.createElement('tr');
+                newRow.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${classArm.className}</td>
+                    <td>${classArm.classArmName}</td>
+                    <td><button onclick="editClassArm(this)">Edit</button></td>
+                    <td><button onclick="deleteClassArm(this)">Delete</button></td>
+                `;
+                classArmsTableBody.appendChild(newRow);
+            });
+        }
+    
+        function loadClassArmsFromLocalStorage() {
+            updateClassArmsTable(); // Update the class arms table on page load
+        }
+    
+        window.addEventListener('load', () => {
+            loadClassArmsFromLocalStorage(); // Load class arms on page load
+        });
+    
+        function createTeacherDropdown() {
+    const teacherClassArmDropdown = document.getElementById('select-class-arm-dropdown');
+    teacherClassArmDropdown.innerHTML = ''; // Clear existing options
+
+    const classes = JSON.parse(localStorage.getItem('classes')) || [];
+    const classArmsList = JSON.parse(localStorage.getItem('classArms')) || [];
+
+    // Create a Set to store unique class arms
+    const uniqueClassArms = new Set();
+
+    // Add class arms to the Set based on the selected class
+    classes.forEach(className => {
+        classArmsList.forEach(classArm => {
+            if (classArm.className === className) {
+                uniqueClassArms.add(classArm.classArmName);
+            }
+        });
+    });
+
+    // Add unique class arms as options to the dropdown
+    uniqueClassArms.forEach(classArmName => {
+        const option = document.createElement('option');
+        option.textContent = classArmName;
+        option.value = classArmName;
+        teacherClassArmDropdown.appendChild(option);
+    });
+}
+
+    
+        window.addEventListener('load', () => {
+            createTeacherDropdown(); // Load teacher dropdown options on page load
+        });
+    
+        function saveTeacher() {
+            const firstNameInput = document.getElementById('first-name-input');
+            const lastNameInput = document.getElementById('last-name-input');
+            const emailInput = document.getElementById('email-input');
+            const phoneInput = document.getElementById('phone-input');
+            const classDropdown = document.getElementById('select-class-dropdown');
+            const classArmDropdown = document.getElementById('select-class-arm-dropdown');
+    
+            const firstName = firstNameInput.value.trim();
+            const lastName = lastNameInput.value.trim();
+            const email = emailInput.value.trim();
+            const phone = phoneInput.value.trim();
+            const selectedClass = classDropdown.value;
+            const selectedClassArm = classArmDropdown.value;
+    
+            if (firstName === '' || lastName === '' || email === '' || phone === '' || selectedClass === '' || selectedClassArm === '') {
+                alert('Please fill in all fields.');
+                return;
+            }
+    
+            const teacher = {
+                firstName,
+                lastName,
+                email,
+                phone,
+                selectedClass,
+                selectedClassArm,
+                dateCreated: new Date().toLocaleDateString(),
+            };
+    
+            let teachers = JSON.parse(localStorage.getItem('teachers')) || [];
+            teachers.push(teacher);
+            localStorage.setItem('teachers', JSON.stringify(teachers));
+    
+            updateTeacherTable(); // Update the table with the new teacher
+    
+            firstNameInput.value = '';
+            lastNameInput.value = '';
+            emailInput.value = '';
+            phoneInput.value = '';
+            classDropdown.value = '';
+            classArmDropdown.value = '';
+    
+            alert('Teacher saved successfully.');
+        }
+    
+        function updateTeacherTable() {
+            const teachers = JSON.parse(localStorage.getItem('teachers')) || [];
+            const tableBody = document.getElementById('create-teachers-table-body');
+            tableBody.innerHTML = ''; // Clear existing rows
+    
+            teachers.forEach((teacher, index) => {
+                const newRow = document.createElement('tr');
+                newRow.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${teacher.firstName}</td>
+                    <td>${teacher.lastName}</td>
+                    <td>${teacher.email}</td>
+                    <td>${teacher.phone}</td>
+                    <td>${teacher.selectedClass}</td>
+                    <td>${teacher.selectedClassArm}</td>
+                    <td>${teacher.dateCreated}</td>
+                    <td><button onclick="deleteTeacher(this)">Delete</button></td>
+                `;
+                tableBody.appendChild(newRow);
+            });
+        }
+    
+        function loadTeachersFromLocalStorage() {
+            updateTeacherTable(); // Update the teacher table on page load
+        }
+    
+        window.addEventListener('load', () => {
+            loadTeachersFromLocalStorage(); // Load teachers from localStorage on page load
+        });
+
+        function createStudentClassDropdown() {
+    const classes = JSON.parse(localStorage.getItem('classes')) || [];
+    const classDropdown = document.getElementById('select-class-dropdown-student'); // Update the ID
+
+    classDropdown.innerHTML = ''; // Clear existing options
+
+    classes.forEach(className => {
+        const option = document.createElement('option');
+        option.textContent = className;
+        option.value = className;
+        classDropdown.appendChild(option);
+        
+    });
+    
+}
+window.addEventListener('load', () => {
+    createStudentClassDropdown(); // Load dropdown options on page load
+});
+
+function createStudentClassArmDropdown() {
+    const classArmsList = JSON.parse(localStorage.getItem('classArms')) || [];
+    const classArmDropdown = document.getElementById('select-class-arm-dropdown-student'); // Update the ID
+
+    classArmDropdown.innerHTML = ''; // Clear existing options
+
+    classArmsList.forEach(classArm => {
+        const option = document.createElement('option');
+        option.textContent = classArm.classArmName;
+        option.value = classArm.classArmName;
+        classArmDropdown.appendChild(option);
+    });
+}
+
+window.addEventListener('load', () => {
+    createStudentClassDropdown(); // Load class dropdown options on page load
+    createStudentClassArmDropdown(); // Load class arm dropdown options on page load
+});
+function saveStudent() {
+    const firstNameInput = document.getElementById('first-name-input');
+    const middleNameInput = document.getElementById('middle-name-input'); // Added middle name input
+    const lastNameInput = document.getElementById('last-name-input');
+    const admissionNoInput = document.getElementById('number-input');
+    const classDropdown = document.getElementById('select-class-dropdown-student');
+    const classArmDropdown = document.getElementById('select-class-arm-dropdown-student');
+
+    const firstName = firstNameInput.value.trim();
+    const middleName = middleNameInput.value.trim(); // Trimmed middle name value
+    const lastName = lastNameInput.value.trim();
+    const admissionNo = admissionNoInput.value.trim();
+    const selectedClass = classDropdown.value;
+    const selectedClassArm = classArmDropdown.value;
+
+    if (firstName === '' || middleName === '' || lastName === '' || admissionNo === '' || selectedClass === '' || selectedClassArm === '') {
+        alert('Please fill in all fields.');
+        return;
+    }
+
+    const student = {
+        firstName,
+        middleName,
+        lastName,
+        admissionNo,
+        selectedClass,
+        selectedClassArm,
+        dateCreated: new Date().toLocaleDateString(),
+    };
+
+    let students = JSON.parse(localStorage.getItem('students')) || [];
+    students.push(student);
+    localStorage.setItem('students', JSON.stringify(students));
+
+    updateStudentTable(); // Update the table with the new student
+
+    firstNameInput.value = '';
+    middleNameInput.value = '';
+    lastNameInput.value = '';
+    admissionNoInput.value = '';
+    classDropdown.value = '';
+    classArmDropdown.value = '';
+
+    alert('Student saved successfully.');
+}
+function updateStudentTable() {
+    const students = JSON.parse(localStorage.getItem('students')) || [];
+    const tableBody = document.getElementById('student-table-body');
+    tableBody.innerHTML = ''; // Clear existing rows
+
+    students.forEach((student, index) => {
+        const newRow = document.createElement('tr');
+        newRow.innerHTML = `
+            <td>${index + 1}</td>
+            <td>${student.firstName}</td>
+            <td>${student.middleName}</td>
+            <td>${student.lastName}</td>
+            <td>${student.admissionNo}</td>
+            <td>${student.selectedClass}</td>
+            <td>${student.selectedClassArm}</td>
+            <td>${student.dateCreated}</td>
+            <td><button onclick="editStudent(this)">Edit</button></td>
+            <td><button onclick="deleteStudent(this)">Delete</button></td>
+        `;
+        tableBody.appendChild(newRow);
+    });
+}
+
+function saveStudent() {
+    // Get student data from input fields
+    const firstNameInput = document.getElementById('first-name-input-student').value.trim();
+    const middleNameInput = document.getElementById('middle-name-input-student').value.trim();
+    const lastNameInput = document.getElementById('last-name-input-student').value.trim();
+    const admissionNoInput = document.getElementById('number-input-student').value.trim();
+    const classDropdown = document.getElementById('select-class-dropdown-student').value;
+    const classArmDropdown = document.getElementById('select-class-arm-dropdown-student').value;
+
+    // Validate input fields
+    if (firstNameInput === '' || middleNameInput === '' || lastNameInput === '' || admissionNoInput === '' || classDropdown === '' || classArmDropdown === '') {
+        alert('Please fill in all fields.');
+        return;
+    }
+
+    // Create a new student object
+    const student = {
+        firstName: firstNameInput,
+        middleName: middleNameInput,
+        lastName: lastNameInput,
+        admissionNo: admissionNoInput,
+        selectedClass: classDropdown,
+        selectedClassArm: classArmDropdown,
+        dateCreated: new Date().toLocaleDateString(),
+    };
+
+    // Get existing student data from localStorage
+    let students = JSON.parse(localStorage.getItem('students')) || [];
+
+    // Add the new student to the existing list
+    students.push(student);
+
+    // Save updated student list back to localStorage
+    localStorage.setItem('students', JSON.stringify(students));
+
+    // Update the student table to display the new student
+    updateStudentTable();
+
+    // Clear input fields after saving
+    document.getElementById('first-name-input-student').value = '';
+    document.getElementById('middle-name-input-student').value = '';
+    document.getElementById('last-name-input-student').value = '';
+    document.getElementById('number-input-student').value = '';
+    document.getElementById('select-class-dropdown-student').value = '';
+    document.getElementById('select-class-arm-dropdown-student').value = '';
+
+    alert('Student saved successfully.');
+}
+
+window.addEventListener('load', () => {
+    // Load students from localStorage on page load
+    updateStudentTable();
+
+    // Load other necessary dropdown options or data
+    createStudentClassDropdown();
+    createStudentClassArmDropdown();
+});
+
+
+
+    </script>
+    
+    
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="logo"></div>
+        <ul class="menu">
+            <li class="active">
+                <a href="#" onclick="loadContent('dashboard-content', this)">
+                    <i class="fas fa-desktop"></i>
+                    <span>Home</span>
+                </a>
+            </li>
+            <li class="manage-class">
+                <a href="#" onclick="toggleManageClassDropdown()">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <span>Manage Class</span>
+                    <i class="fas fa-caret-down"></i>
+                </a>
+                <ul class="sub-menu" style="display: none;">
+                    <li>
+                        <a href="#" onclick="loadContent('add-class-content', this)">
+                            <i class="fas fa-plus"></i>
+                            <span>Add Class</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="manage-class-arms">
+                <a href="#" onclick="toggleManageClassArmsDropdown()">
+                    <i class="fas fa-chalkboard"></i>
+                    <span>Manage Class Arms</span>
+                    <i class="fas fa-caret-down"></i>
+                </a>
+                <ul class="sub-menu" style="display: none;">
+                    <li>
+                        <a href="#" onclick="loadContent('create-class-arms-content', this)">
+                            <i class="fas fa-plus"></i>
+                            <span>Create Class Arms</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="manage-teachers">
+                <a href="#" onclick="toggleManageTeachersDropdown()">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <span>Manage Teachers</span>
+                    <i class="fas fa-caret-down"></i>
+                </a>
+                <ul class="sub-menu" style="display: none;">
+                    <li>
+                        <a href="#" onclick="loadContent('create-class-teachers-content', this)">
+                            <i class="fas fa-plus"></i>
+                            <span>Create Class Teachers</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="manage-students">
+                <a href="#" onclick="toggleManageStudentsDropdown()">
+                    <i class="fas fa-user-graduate"></i>
+                    <span>Manage Students</span>
+                    <i class="fas fa-caret-down"></i>
+                </a>
+                <ul class="sub-menu" style="display: none;">
+                    <li>
+                        <a href="#" onclick="loadContent('create-students-content', this)">
+                            <i class="fas fa-plus"></i>
+                            <span>Create Students</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="manage-session-term">
+                <a href="#" onclick="toggleManageSessionTermDropdown()">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Manage Session & Term</span>
+                    <i class="fas fa-caret-down"></i>
+                </a>
+                <ul class="sub-menu" style="display: none;">
+                    <li>
+                        <a href="#" onclick="loadContent('create-session-term-content', this)">
+                            <i class="fas fa-plus"></i>
+                            <span>Create Session and Term</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li id="logout" class="logout"><a href="#">Log out</a></li>
+        </ul>
+    </div>
+
+    <div class="main--content" id="mainContent">
+        <div id="dashboard-content">
+            <div class="header--wrapper">
+                <div class="search">
+                    <i class="fa-solid fa-search"></i>
+                    <input type="text" placeholder="search"/>
+                </div>
+                <img src="OIP.jpg" alt="">
+            </div>
+        </div>
+        <div id="add-class-content" style="display: none;">
+            <h1>Create Class</h1>
+            <div class="create class header-wrapper">
+                <p>Create class</p>
+                <div class="class-name">
+                    <label for="class-name-input">Class Name:</label>
+                    <input type="text" id="class-name-input" placeholder="Enter class name">
+                </div>
+                <button class="save-button" onclick="saveClass()">Save</button>       
+            </div>
+            <div class="header---wrapper">
+                <p>All classes</p>
+                <table id="class-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Class Name</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody id="class-table-body"></tbody>
+                </table>
+            </div>
+        </div>
+        <div id="create-class-arms-content" style="display: none;">
+            <h1>Create Class</h1>       
+            <div class="arms-header">
+                <div class="select-class">
+                    <label for="class-dropdown">Select Class:</label>
+                    <select id="class-dropdown" onchange="onSelectClass(this.value)">
+                        <option value="">Select Class</option>
+                    </select>
+                </div>  
+                <div class="class-arm-name">
+                    <label for="class-arm-name-input">Class Arm Name:</label>
+                    <input type="text" id="class-arm-name-input" placeholder="Enter class arm name">
+                </div>  
+                <button class="save-class-arm-button" onclick="saveClassArm()">Save</button>
+            </div>
+            <div class="header---wrapper">
+                <p>All class arms</p>
+                <table id="class-arms-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Class Name</th>
+                            <th>Class Arm Name</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody id="class-arms-table-body"></tbody>
+                </table>
+            </div>
+        </div>
+        <div id="create-class-teachers-content" style="display: none;">
+            <h1>Create Class Teacher</h1>
+            <div class="teacher-header">
+                <div class="input-group">
+                    <label for="first-name-input">First Name:</label>
+                    <input type="text" id="first-name-input" placeholder="Enter first name">
+                </div>
+                <div class="input-group">
+                    <label for="last-name-input">Last Name:</label>
+                    <input type="text" id="last-name-input" placeholder="Enter last name">
+                </div>
+                <div class="input-group">
+                    <label for="email-input">Email Address:</label>
+                    <input type="email" id="email-input" placeholder="Enter email address">
+                </div>
+                <div class="input-group">
+                    <label for="phone-input">Phone Number:</label>
+                    <input type="tel" id="phone-input" placeholder="Enter phone number">
+                </div>
+                <div class="input-group">
+                    <label for="select-class-dropdown">Select Class:</label>
+                    <select id="select-class-dropdown">
+                        <!-- Options will be dynamically populated -->
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="select-class-arm-dropdown">Select Class Arm:</label>
+                    <select id="select-class-arm-dropdown">
+                        <!-- Options will be dynamically populated -->
+                    </select>
+                </div>
+                <button class="save-button" onclick="saveTeacher()">Save</button>
+            </div>
+            <div class="teacher-header">
+                <p>All class teachers</p>
+                <table id="create-teachers-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email Address</th>
+                            <th>Phone No</th>
+                            <th>Class</th>
+                            <th>Class Arm</th>
+                            <th>Date created</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody id="create-teachers-table-body"></tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div id="create-students-content" style="display: none;">
+            <h1>Create Student</h1>
+            <div class="teacher-header">
+                <div class="input-group">
+                    <label for="first-name-input-student">First Name:</label>
+                    <input type="text" id="first-name-input-student" placeholder="Enter first name">
+                </div>
+                <div class="input-group">
+                    <label for="middle-name-input-student">Middle Name:</label>
+                    <input type="text" id="middle-name-input-student" placeholder="Enter middle name">
+                </div>
+                <div class="input-group">
+                    <label for="last-name-input-student">Last Name:</label>
+                    <input type="text" id="last-name-input-student" placeholder="Enter last name">
+                </div>
+                <div class="input-group">
+                    <label for="number-input-student">Admission No:</label>
+                    <input type="number" id="number-input-student" placeholder="Enter admission number">
+                </div>                
+                <div class="input-group">
+                    <label for="select-class-dropdown-student">Select Class:</label>
+                    <select id="select-class-dropdown-student">
+                        <!-- Options will be dynamically populated -->
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="select-class-arm-dropdown-student">Select Class Arm:</label>
+                    <select id="select-class-arm-dropdown-student" onchange="createStudentClassArmDropdown()">
+                        <!-- Options will be dynamically populated -->
+                    </select>
+                </div>
+                <button class="save-button" onclick="saveStudent()">Save</button>
+            </div>
+            <div class="student-header">
+                <p>All Student </p>
+                <table id="student-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>First Name</th>
+                            <th>Middle Name</th>
+                            <th>Last Name</th>
+                            <th>Admission No</th>
+                            <th>Selected Class</th>
+                            <th>Selected Class Arm</th>
+                            <th>Date Created</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody id="student-table-body">
+                        <!-- Table rows will be dynamically populated here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id="create-session-term-content" style="display: none;">
+            Create Session and Term Content
+        </div>
+    </div>
+    
+</body>
+
+</html>
