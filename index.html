@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Form</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script>
+        function auth() {
+            var storedEmail = localStorage.getItem('email');
+            var storedPassword = localStorage.getItem('password');
+
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+            var role = document.getElementById('role').value;
+
+            if (email === storedEmail && password === storedPassword) {
+                if (role === 'Administrator') {
+                    window.location.href = 'administrator.html';
+                } else if (role === 'Class Teacher') {
+                    window.location.href = 'teacher-dashboard.html';
+                }
+            } else {
+                alert('Invalid email or password. Please try again.');
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="wrapper">
+        <img src="path/to/your/image.jpg" alt="Profile Picture">
+        <h1>Login</h1>
+        <form id="loginForm" action="#">
+            <input type="text" id="email" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <select id="role" required>
+                <option value="" disabled selected>Select User Role</option>
+                <option value="Administrator">Administrator</option>
+                <option value="Class Teacher">Class Teacher</option>
+            </select>
+        </form>
+        <button onclick="auth()">Login</button>
+        <div class="recover">
+            <a href="#">Forgot Password</a>
+        </div>
+        <div class="member">
+            Not a member? <a href="signup.html">Sign Up</a>
+        </div>
+    </div>
+</body>
+</html>
