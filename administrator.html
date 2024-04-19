@@ -11,18 +11,14 @@
     />
     <script>
         function loadContent(contentId, clickedElement) {
-            // Remove 'active' class from all menu items
             const menuItems = document.querySelectorAll('.menu li');
             menuItems.forEach(item => item.classList.remove('active'));
     
-            // Add 'active' class to the clicked menu item
             clickedElement.parentElement.classList.add('active');
     
-            // Hide all content divs
             const contentDivs = document.querySelectorAll('.main--content > div');
             contentDivs.forEach(div => div.style.display = 'none');
     
-            // Display the corresponding content div
             const selectedContent = document.getElementById(contentId);
             selectedContent.style.display = 'block';
         }
@@ -123,16 +119,15 @@
         }
     
         window.addEventListener('load', () => {
-            loadClassesFromLocalStorage(); // Load classes on page load
-            loadTeachersFromLocalStorage(); // Load teachers on page load
+            loadClassesFromLocalStorage(); 
+            loadTeachersFromLocalStorage(); 
         });
     
         function createClassDropdown() {
             const classes = JSON.parse(localStorage.getItem('classes')) || [];
-            const classDropdown1 = document.getElementById('class-dropdown'); // for Create Class Arms
-            const classDropdown2 = document.getElementById('select-class-dropdown'); // for Create Class Teachers
-            const classArmDropdown = document.getElementById('select-class-arm-dropdown'); // for selecting class arms
-    
+            const classDropdown1 = document.getElementById('class-dropdown'); 
+            const classDropdown2 = document.getElementById('select-class-dropdown'); 
+            const classArmDropdown = document.getElementById('select-class-arm-dropdown'); 
             classes.forEach(className => {
                 const option1 = document.createElement('option');
                 option1.textContent = className;
@@ -155,8 +150,8 @@
         }
     
         window.addEventListener('load', () => {
-            createClassDropdown(); // Load dropdown options on page load
-            updateTeacherTable(); // Update teacher table on page load
+            createClassDropdown(); 
+            updateTeacherTable(); 
         });
     
         function saveClassArm() {
@@ -173,7 +168,7 @@
             classArms.push({ className, classArmName });
             localStorage.setItem('classArms', JSON.stringify(classArms));
     
-            updateClassArmsTable(); // Update the class arms table
+            updateClassArmsTable(); 
     
             classArmNameInput.value = '';
     
@@ -184,7 +179,7 @@
             const classArmsTableBody = document.getElementById('class-arms-table-body');
             const classArmsList = JSON.parse(localStorage.getItem('classArms')) || [];
     
-            classArmsTableBody.innerHTML = ''; // Clear existing rows
+            classArmsTableBody.innerHTML = ''; 
     
             classArmsList.forEach((classArm, index) => {
                 const newRow = document.createElement('tr');
@@ -200,24 +195,22 @@
         }
     
         function loadClassArmsFromLocalStorage() {
-            updateClassArmsTable(); // Update the class arms table on page load
+            updateClassArmsTable(); 
         }
     
         window.addEventListener('load', () => {
-            loadClassArmsFromLocalStorage(); // Load class arms on page load
+            loadClassArmsFromLocalStorage(); 
         });
     
         function createTeacherDropdown() {
     const teacherClassArmDropdown = document.getElementById('select-class-arm-dropdown');
-    teacherClassArmDropdown.innerHTML = ''; // Clear existing options
+    teacherClassArmDropdown.innerHTML = ''; 
 
     const classes = JSON.parse(localStorage.getItem('classes')) || [];
     const classArmsList = JSON.parse(localStorage.getItem('classArms')) || [];
 
-    // Create a Set to store unique class arms
     const uniqueClassArms = new Set();
 
-    // Add class arms to the Set based on the selected class
     classes.forEach(className => {
         classArmsList.forEach(classArm => {
             if (classArm.className === className) {
@@ -226,7 +219,6 @@
         });
     });
 
-    // Add unique class arms as options to the dropdown
     uniqueClassArms.forEach(classArmName => {
         const option = document.createElement('option');
         option.textContent = classArmName;
@@ -237,7 +229,7 @@
 
     
         window.addEventListener('load', () => {
-            createTeacherDropdown(); // Load teacher dropdown options on page load
+            createTeacherDropdown(); 
         });
     
         function saveTeacher() {
@@ -274,7 +266,7 @@
             teachers.push(teacher);
             localStorage.setItem('teachers', JSON.stringify(teachers));
     
-            updateTeacherTable(); // Update the table with the new teacher
+            updateTeacherTable(); 
     
             firstNameInput.value = '';
             lastNameInput.value = '';
@@ -289,7 +281,7 @@
         function updateTeacherTable() {
             const teachers = JSON.parse(localStorage.getItem('teachers')) || [];
             const tableBody = document.getElementById('create-teachers-table-body');
-            tableBody.innerHTML = ''; // Clear existing rows
+            tableBody.innerHTML = ''; 
     
             teachers.forEach((teacher, index) => {
                 const newRow = document.createElement('tr');
@@ -309,18 +301,18 @@
         }
     
         function loadTeachersFromLocalStorage() {
-            updateTeacherTable(); // Update the teacher table on page load
+            updateTeacherTable(); 
         }
     
         window.addEventListener('load', () => {
-            loadTeachersFromLocalStorage(); // Load teachers from localStorage on page load
+            loadTeachersFromLocalStorage(); 
         });
 
         function createStudentClassDropdown() {
     const classes = JSON.parse(localStorage.getItem('classes')) || [];
-    const classDropdown = document.getElementById('select-class-dropdown-student'); // Update the ID
+    const classDropdown = document.getElementById('select-class-dropdown-student'); 
 
-    classDropdown.innerHTML = ''; // Clear existing options
+    classDropdown.innerHTML = ''; 
 
     classes.forEach(className => {
         const option = document.createElement('option');
@@ -332,14 +324,14 @@
     
 }
 window.addEventListener('load', () => {
-    createStudentClassDropdown(); // Load dropdown options on page load
+    createStudentClassDropdown(); 
 });
 
 function createStudentClassArmDropdown() {
     const classArmsList = JSON.parse(localStorage.getItem('classArms')) || [];
-    const classArmDropdown = document.getElementById('select-class-arm-dropdown-student'); // Update the ID
+    const classArmDropdown = document.getElementById('select-class-arm-dropdown-student'); 
 
-    classArmDropdown.innerHTML = ''; // Clear existing options
+    classArmDropdown.innerHTML = ''; 
 
     classArmsList.forEach(classArm => {
         const option = document.createElement('option');
@@ -350,19 +342,19 @@ function createStudentClassArmDropdown() {
 }
 
 window.addEventListener('load', () => {
-    createStudentClassDropdown(); // Load class dropdown options on page load
-    createStudentClassArmDropdown(); // Load class arm dropdown options on page load
+    createStudentClassDropdown(); 
+    createStudentClassArmDropdown(); 
 });
 function saveStudent() {
     const firstNameInput = document.getElementById('first-name-input');
-    const middleNameInput = document.getElementById('middle-name-input'); // Added middle name input
+    const middleNameInput = document.getElementById('middle-name-input'); 
     const lastNameInput = document.getElementById('last-name-input');
     const admissionNoInput = document.getElementById('number-input');
     const classDropdown = document.getElementById('select-class-dropdown-student');
     const classArmDropdown = document.getElementById('select-class-arm-dropdown-student');
 
     const firstName = firstNameInput.value.trim();
-    const middleName = middleNameInput.value.trim(); // Trimmed middle name value
+    const middleName = middleNameInput.value.trim(); 
     const lastName = lastNameInput.value.trim();
     const admissionNo = admissionNoInput.value.trim();
     const selectedClass = classDropdown.value;
@@ -387,7 +379,7 @@ function saveStudent() {
     students.push(student);
     localStorage.setItem('students', JSON.stringify(students));
 
-    updateStudentTable(); // Update the table with the new student
+    updateStudentTable(); 
 
     firstNameInput.value = '';
     middleNameInput.value = '';
@@ -401,7 +393,7 @@ function saveStudent() {
 function updateStudentTable() {
     const students = JSON.parse(localStorage.getItem('students')) || [];
     const tableBody = document.getElementById('student-table-body');
-    tableBody.innerHTML = ''; // Clear existing rows
+    tableBody.innerHTML = ''; 
 
     students.forEach((student, index) => {
         const newRow = document.createElement('tr');
@@ -422,7 +414,6 @@ function updateStudentTable() {
 }
 
 function saveStudent() {
-    // Get student data from input fields
     const firstNameInput = document.getElementById('first-name-input-student').value.trim();
     const middleNameInput = document.getElementById('middle-name-input-student').value.trim();
     const lastNameInput = document.getElementById('last-name-input-student').value.trim();
@@ -430,13 +421,11 @@ function saveStudent() {
     const classDropdown = document.getElementById('select-class-dropdown-student').value;
     const classArmDropdown = document.getElementById('select-class-arm-dropdown-student').value;
 
-    // Validate input fields
     if (firstNameInput === '' || middleNameInput === '' || lastNameInput === '' || admissionNoInput === '' || classDropdown === '' || classArmDropdown === '') {
         alert('Please fill in all fields.');
         return;
     }
 
-    // Create a new student object
     const student = {
         firstName: firstNameInput,
         middleName: middleNameInput,
@@ -447,19 +436,14 @@ function saveStudent() {
         dateCreated: new Date().toLocaleDateString(),
     };
 
-    // Get existing student data from localStorage
     let students = JSON.parse(localStorage.getItem('students')) || [];
 
-    // Add the new student to the existing list
     students.push(student);
 
-    // Save updated student list back to localStorage
     localStorage.setItem('students', JSON.stringify(students));
 
-    // Update the student table to display the new student
     updateStudentTable();
 
-    // Clear input fields after saving
     document.getElementById('first-name-input-student').value = '';
     document.getElementById('middle-name-input-student').value = '';
     document.getElementById('last-name-input-student').value = '';
@@ -471,13 +455,131 @@ function saveStudent() {
 }
 
 window.addEventListener('load', () => {
-    // Load students from localStorage on page load
     updateStudentTable();
 
-    // Load other necessary dropdown options or data
     createStudentClassDropdown();
     createStudentClassArmDropdown();
 });
+
+let sessions = []; 
+
+function savesession() {
+    let sessionName = document.getElementById('session-name-input-student').value;
+    let term = document.getElementById('select-term-dropdown-student').value;
+    
+    let session = {
+        name: sessionName,
+        term: term,
+        active: false, 
+        date: new Date() 
+    };
+    
+    sessions.push(session); 
+    
+    displaySessions(); 
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    if (localStorage.getItem('sessions')) {
+        sessions = JSON.parse(localStorage.getItem('sessions'));
+        displaySessions();
+    }
+});
+
+function savesession() {
+    let sessionName = document.getElementById('session-name-input-student').value;
+    let term = document.getElementById('select-term-dropdown-student').value;
+
+    let session = {
+        name: sessionName,
+        term: term,
+        active: false,
+        date: new Date().toLocaleDateString() 
+    };
+
+    sessions.push(session);
+    localStorage.setItem('sessions', JSON.stringify(sessions)); 
+
+    displaySessions();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    if (localStorage.getItem('sessions')) {
+        sessions = JSON.parse(localStorage.getItem('sessions'));
+        displaySessions();
+    }
+});
+
+function savesession() {
+    let sessionName = document.getElementById('session-name-input-student').value;
+    let term = document.getElementById('select-term-dropdown-student').value;
+
+    let session = {
+        name: sessionName,
+        term: term,
+        active: false,
+        date: new Date().toLocaleDateString() 
+    };
+
+    sessions.push(session);
+    localStorage.setItem('sessions', JSON.stringify(sessions)); 
+
+    displaySessions();
+}
+
+function displaySessions() {
+    let tableBody = document.getElementById('session-table-body');
+    tableBody.innerHTML = '';
+
+    sessions.forEach((session, index) => {
+        let row = tableBody.insertRow();
+        let cellIndex = row.insertCell(0);
+        let cellSession = row.insertCell(1);
+        let cellTerm = row.insertCell(2);
+        let cellStatus = row.insertCell(3);
+        let cellDate = row.insertCell(4);
+        let cellActivate = row.insertCell(5);
+        let cellEdit = row.insertCell(6);
+        let cellDelete = row.insertCell(7);
+
+        cellIndex.innerHTML = index + 1;
+        cellSession.innerHTML = session.name;
+        cellTerm.innerHTML = session.term;
+        cellStatus.innerHTML = session.active ? 'Active' : 'Inactive';
+        cellDate.innerHTML = session.date;
+
+        let activateButton = document.createElement('button');
+        activateButton.innerText = 'Activate';
+        activateButton.onclick = () => activateSession(index);
+        cellActivate.appendChild(activateButton);
+
+        let editButton = document.createElement('button');
+        editButton.innerText = 'Edit';
+        editButton.onclick = () => editSession(index);
+        cellEdit.appendChild(editButton);
+
+        let deleteButton = document.createElement('button');
+        deleteButton.innerText = 'Delete';
+        deleteButton.onclick = () => deleteSession(index);
+        cellDelete.appendChild(deleteButton);
+    });
+}
+
+function activateSession(index) {
+    sessions[index].active = true;
+    localStorage.setItem('sessions', JSON.stringify(sessions)); 
+    displaySessions();
+}
+
+function deleteSession(index) {
+    sessions.splice(index, 1);
+    localStorage.setItem('sessions', JSON.stringify(sessions)); 
+    displaySessions();
+}
+
+function editSession(index) {
+}
+
 
 
 
@@ -663,13 +765,11 @@ window.addEventListener('load', () => {
                 <div class="input-group">
                     <label for="select-class-dropdown">Select Class:</label>
                     <select id="select-class-dropdown">
-                        <!-- Options will be dynamically populated -->
                     </select>
                 </div>
                 <div class="input-group">
                     <label for="select-class-arm-dropdown">Select Class Arm:</label>
                     <select id="select-class-arm-dropdown">
-                        <!-- Options will be dynamically populated -->
                     </select>
                 </div>
                 <button class="save-button" onclick="saveTeacher()">Save</button>
@@ -717,13 +817,11 @@ window.addEventListener('load', () => {
                 <div class="input-group">
                     <label for="select-class-dropdown-student">Select Class:</label>
                     <select id="select-class-dropdown-student">
-                        <!-- Options will be dynamically populated -->
                     </select>
                 </div>
                 <div class="input-group">
                     <label for="select-class-arm-dropdown-student">Select Class Arm:</label>
                     <select id="select-class-arm-dropdown-student" onchange="createStudentClassArmDropdown()">
-                        <!-- Options will be dynamically populated -->
                     </select>
                 </div>
                 <button class="save-button" onclick="saveStudent()">Save</button>
@@ -746,13 +844,47 @@ window.addEventListener('load', () => {
                         </tr>
                     </thead>
                     <tbody id="student-table-body">
-                        <!-- Table rows will be dynamically populated here -->
                     </tbody>
                 </table>
             </div>
         </div>
         <div id="create-session-term-content" style="display: none;">
-            Create Session and Term Content
+            <h1>Create Session and Term</h1>
+            <div class="session-header">
+                <div class="input-group">
+                    <label for="session-name-input-student">Session Name:</label>
+                    <input type="text" id="session-name-input-student" placeholder="Enter session name">
+                </div>
+                <div class="input-group">
+                <label for="select-term-dropdown">Term:</label>
+                <select id="select-term-dropdown-student">
+                    <option value="first">First</option>
+                    <option value="second">Second</option>
+                    <option value="third">Third</option>
+                    <option value="fourth">Fourth</option>
+                  </select>
+                  </div>
+                  <button class="save-button" onclick="savesession()">Save</button>
+                </div>
+                <div class="session-header">
+                    <p>All Session and Term</p>
+                    <table id="session-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Session</th>
+                                <th>Term</th>
+                                <th>Status</th>
+                                <th>Date </th>
+                                <th>Activate </th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody id="session-table-body">
+                        </tbody>
+                    </table>
+                </div>
         </div>
     </div>
     
