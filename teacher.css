@@ -1,0 +1,251 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    display: flex;
+}
+
+.sidebar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 110px;
+    height: 100vh;
+    padding: 0 1.7rem;
+    color: #ffffff;
+    overflow: hidden;
+    transition: all 0.5s linear;
+    background: #70e061;
+}
+
+.sidebar:hover {
+    width: 240px;
+    transition: 0.5s;
+}
+
+.logo {
+    height: 80px;
+    padding: 16px;
+}
+
+.menu {
+    height: 88%;
+    position: relative;
+    list-style: none;
+    padding: 0;
+}
+
+.menu li {
+    padding: 1rem;
+    margin: 8px 0;
+    border-radius: 8px;
+    transition: all 0.5 ease-in-out;
+}
+
+.menu li:hover,
+.active {
+    background: #ffffff;
+}
+
+.menu a {
+    color: #000000;
+    font-size: 14px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.menu a span {
+    overflow: hidden;
+}
+
+.menu a i {
+    font-size: 1.2rem;
+}
+
+.logout {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.main--content {
+    position: relative;
+    background: #ffffff;
+    width: 100%;
+    padding: 1rem;
+}
+
+.header--wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    background: #70e061;
+    border-radius: 10px;
+    padding: 10px 2rem;
+    margin-bottom: 1rem;
+    font-size: larger;
+}
+
+.header--wrapper img{
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.search{
+    background: rgb(237, 237, 237);
+    border-radius: 15px;
+    color: rgba(113, 99, 186, 255);
+    display: flex;
+    align-items: center;
+    padding: 4px 12px;
+}
+
+.search input{
+    background: transparent;
+    padding: 10px;
+}
+
+.search i{
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.5s ease-out;
+}
+
+.header--title {
+    color: #000000;
+}
+
+.user--info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.header---wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    background: #70e061;
+    border-radius: 10px;
+    padding: 10px 2rem;
+    margin-bottom: 1rem;
+    font-size: larger;
+    display: flex;
+    flex-direction: column;
+    align-items: normal;
+    margin-top: 20px;
+}
+.student-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    background: #70e061;
+    border-radius: 10px;
+    padding: 10px 2rem;
+    margin-bottom: 1rem;
+    font-size: larger;
+    display: flex;
+    flex-direction: column;
+    align-items: normal;
+    margin-top: 20px;
+}
+.save-button {
+    background-color: #fff;
+    color: black;
+    border: 25px;
+    font-size: 15px;
+    cursor: pointer;
+    text-align: left;
+    padding: 0;
+    margin: 0;
+    display: inline-block; 
+    line-height: normal; 
+    vertical-align: middle; 
+}
+
+.attendance-container {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 20px auto; 
+    width: 300px;
+}
+
+.attendance-header {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.attendance-row {
+    display: flex;
+    justify-content: space-around;
+}
+
+.attendance-label {
+    display: flex;
+    align-items: center;
+}
+
+.attendance-label label {
+    margin-right: 10px;
+}
+
+.attendance-select {
+    padding: 5px;
+    width: 100%;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+}
+table{
+    width: 100%;
+    table-layout: fixed;
+    min-width: 1000px;
+}
+thead th{
+    position: sticky;
+    top: 0;
+    background-color: #ffffff;
+    color: #000000;
+    font-size: 15px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse; 
+}
+
+th,
+td {
+    border: 1px solid #ccc; 
+    padding: 8px; 
+}
+
+th {
+    background-color: #f2f2f2; 
+    font-weight: bold;
+    text-align: left;
+}
+
+tr:hover {
+    background-color: #e0e0e0; /
+}

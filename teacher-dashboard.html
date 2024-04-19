@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="teacher.css" />
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <script>
+        function loadContent(contentId, clickedElement) {
+            const menuItems = document.querySelectorAll('.menu li');
+            menuItems.forEach(item => item.classList.remove('active'));
+    
+            clickedElement.parentElement.classList.add('active');
+    
+            const contentDivs = document.querySelectorAll('.content > div');
+            contentDivs.forEach(div => div.style.display = 'none');
+    
+            const selectedContent = document.getElementById(contentId);
+            selectedContent.style.display = 'block';
+        }
+        function toggleManageStudentsDropdown() {
+            var subMenu = document.getElementById('manageStudentsSubMenu');
+            if (subMenu.style.display === 'none' || subMenu.style.display === '') {
+                subMenu.style.display = 'block';
+            } else {
+                subMenu.style.display = 'none';
+            }
+        }
+
+        function toggleManageAttendance() {
+            var subMenu = document.getElementById('manageAttendanceSubMenu');
+            if (subMenu.style.display === 'none' || subMenu.style.display === '') {
+                subMenu.style.display = 'block';
+            } else {
+                subMenu.style.display = 'none';
+            }
+        }
+        loadContent('dashboard-content', document.querySelector('.menu > li > a'));
+        
+    </script>
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="logo"></div>
+        <ul class="menu">
+            <li class="active">
+                <a href="#" onclick="loadContent('dashboard-content', this)">
+                    <i class="fas fa-desktop"></i>
+                    <span>Home</span>
+                </a>
+            </li>
+            <li class="manage-students">
+                <a href="#" onclick="toggleManageStudentsDropdown(); loadContent('View-students-content', this)">
+                    <i class="fas fa-user-graduate"></i>
+                    <span>Manage Students</span>
+                    <i class="fas fa-caret-down"></i>
+                </a>
+                <ul id="manageStudentsSubMenu" class="sub-menu" style="display: none;">
+                    <li>
+                        <a href="#" onclick="loadContent('View-students-content', this)">
+                            <i class="fas fa-plus"></i>
+                            <span>View Students</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="manage-attendance-term">
+                <a href="#" onclick="toggleManageAttendance(); loadContent('Take-attendance-term', this)">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Manage Attendance</span>
+                    <i class="fas fa-caret-down"></i>
+                </a>
+                <ul id="manageAttendanceSubMenu" class="sub-menu" style="display: none;">
+                    <li>
+                        <a href="#" onclick="loadContent('Take-attendance-term', this)">
+                            <i class="fas fa-plus"></i>
+                            <span>Take Attendance</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="loadContent('View-class-attendance-term', this)">
+                            <i class="fas fa-plus"></i>
+                            <span>View Class Attendance</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="loadContent('View-student-attendance-term', this)">
+                            <i class="fas fa-plus"></i>
+                            <span>View Student Attendance</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="loadContent('Report-attendance-term', this)">
+                            <i class="fas fa-plus"></i>
+                            <span>Today's Report</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="logout">
+                <a href="#" onclick="loadContent('logout-content', this)">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Log out</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="main--content" id="mainContent">
+    <div class="content">
+        <div id="dashboard-content">
+            <div class="header--wrapper">
+                <div class="search">
+                    <i class="fa-solid fa-search"></i>
+                    <input type="text" placeholder="search"/>
+                </div>
+                <img src="OIP.jpg" alt="">
+            </div>
+        </div>
+        <div id="View-students-content" style="display: none;">
+            <h1>All Students</h1>
+            <div class="student-header">
+                <p>All Student </p>
+                <table id="student-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>First Name</th>
+                            <th>Middle Name</th>
+                            <th>Last Name</th>
+                            <th>Admission No</th>
+                            <th>Selected Class</th>
+                            <th>Selected Class Arm</th>
+                            <th>Date Created</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody id="student-table-body">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id="Take-attendance-term" style="display: none;">
+
+            <h2>Take Attendance</h2>
+            <p>Take attendance for a specific term or session.</p>
+        </div>
+        <div id="View-class-attendance-term" style="display: none;">
+
+            <h2>View Class Attendance</h2>
+            <p>View attendance records for classes.</p>
+        </div>
+        <div id="View-student-attendance-term" style="display: none;">
+
+            <h2>View Student Attendance</h2>
+            <p>View individual student attendance records.</p>
+        </div>
+        <div id="Report-attendance-term" style="display: none;">
+
+            <h2>Today's Report</h2>
+            <p>Generate a report for today's attendance.</p>
+        </div>
+        <div id="logout-content" style="display: none;">
+
+            <h2>Logout</h2>
+            <p>Are you sure you want to log out?</p>
+        </div>
+    </div>
+    </div>
+    
+</body>
+
+</html>
