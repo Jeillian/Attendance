@@ -41,6 +41,7 @@
         }
         loadContent('dashboard-content', document.querySelector('.menu > li > a'));
         
+        
     </script>
 </head>
 
@@ -141,35 +142,100 @@
                         </tr>
                     </thead>
                     <tbody id="student-table-body">
-
                     </tbody>
                 </table>
             </div>
         </div>
-        <div id="Take-attendance-term" style="display: none;">
-
-            <h2>Take Attendance</h2>
-            <p>Take attendance for a specific term or session.</p>
-        </div>
+        <div id="Take-attendance-term">
+            <h2 id="attendance-header">Take Attendance </h2>
+            <div class="attendance-header">
+                <p>All Student </p>
+                <table id="student-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>First Name</th>
+                            <th>Middle Name</th>
+                            <th>Last Name</th>
+                            <th>Admission No</th>
+                            <th> Class</th>
+                            <th> Class Arm</th>
+                            <th>Check</th>
+                        </tr>
+                    </thead>
+                    <tbody id="attendance-table-body">
+                    </tbody>
+                </table>
+            </div>
+          </div>
         <div id="View-class-attendance-term" style="display: none;">
-
             <h2>View Class Attendance</h2>
-            <p>View attendance records for classes.</p>
+            <div class="class-header">
+                <p>View Class Attendance</p>
+                <div class="input-group">
+                <label for="select-date-dropdown">Date:</label>
+                <select id="select-date-dropdown-student">
+                  </select>
+                  </div>
+                  </div>
+                  <div class="class-header">
+                    <p>Class Attendance </p>
+                    <table id="student-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>First Name</th>
+                                <th>Middle Name</th>
+                                <th>Last Name</th>
+                                <th>Admission No</th>
+                                <th> Class</th>
+                                <th> Class Arm</th>
+                                <th>Session</th>
+                                <th>Term</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="attendance-table-body">
+                        </tbody>
+                    </table>
+                </div>
         </div>
         <div id="View-student-attendance-term" style="display: none;">
-
             <h2>View Student Attendance</h2>
-            <p>View individual student attendance records.</p>
+            <div class="class-header">
+                <p>View Class Attendance</p>
+                <div class="input-group">
+                <label for="select-student-dropdown">Select student:</label>
+                <select id="select-student-dropdown-student">
+                  </select>
+                  </div>
+            </div>
+                  <div class="class-header">
+                    <p>Class Attendance </p>
+                    <table id="student-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>First Name</th>
+                                <th>Middle Name</th>
+                                <th>Last Name</th>
+                                <th>Admission No</th>
+                                <th> Class</th>
+                                <th> Class Arm</th>
+                                <th>Session</th>
+                                <th>Term</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="attendance-table-body">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
         <div id="Report-attendance-term" style="display: none;">
-
-            <h2>Today's Report</h2>
-            <p>Generate a report for today's attendance.</p>
-        </div>
-        <div id="logout-content" style="display: none;">
-
-            <h2>Logout</h2>
-            <p>Are you sure you want to log out?</p>
         </div>
     </div>
     </div>
