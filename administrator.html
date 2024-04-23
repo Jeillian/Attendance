@@ -571,16 +571,135 @@ function activateSession(index) {
     displaySessions();
 }
 
-function deleteSession(index) {
-    sessions.splice(index, 1);
-    localStorage.setItem('sessions', JSON.stringify(sessions)); 
-    displaySessions();
+function deleteClass(button) {
+    const row = button.closest('tr');
+    const classNameCell = row.querySelector('td:nth-child(2)');
+    const className = classNameCell.textContent.trim();
+    let classes = JSON.parse(localStorage.getItem('classes')) || [];
+    classes = classes.filter(classItem => classItem !== className);
+    localStorage.setItem('classes', JSON.stringify(classes));
+    row.remove();
 }
 
-function editSession(index) {
+function editClassArm(button) {
+    const row = button.closest('tr');
+    const classNameCell = row.querySelector('td:nth-child(2)');
+    const classArmNameCell = row.querySelector('td:nth-child(3)');
+    
+    const newClassName = prompt('Enter new class name:', classNameCell.textContent.trim());
+    const newClassArmName = prompt('Enter new class arm name:', classArmNameCell.textContent.trim());
+
+    if (newClassName !== null && newClassName.trim() !== '') {
+        classNameCell.textContent = newClassName.trim();
+    }
+    
+    if (newClassArmName !== null && newClassArmName.trim() !== '') {
+        classArmNameCell.textContent = newClassArmName.trim();
+    }
 }
 
+function deleteClassArm(button) {
+    const row = button.closest('tr');
+    const classNameCell = row.querySelector('td:nth-child(2)');
+    const classArmNameCell = row.querySelector('td:nth-child(3)');
+    const className = classNameCell.textContent.trim();
+    const classArmName = classArmNameCell.textContent.trim();
+    
+    let classArms = JSON.parse(localStorage.getItem('classArms')) || [];
+    classArms = classArms.filter(classArm => !(classArm.className === className && classArm.classArmName === classArmName));
+    
+    localStorage.setItem('classArms', JSON.stringify(classArms));
+    row.remove();
+}
 
+function editTeacher(button) {
+    // Add your implementation for editing teachers here
+}
+
+function deleteTeacher(button) {
+    const row = button.closest('tr');
+    const emailCell = row.querySelector('td:nth-child(4)');
+    const email = emailCell.textContent.trim();
+    let teachers = JSON.parse(localStorage.getItem('teachers')) || [];
+    teachers = teachers.filter(teacher => teacher.email !== email);
+    localStorage.setItem('teachers', JSON.stringify(teachers));
+    row.remove();
+}
+
+function editStudent(button) {
+    // Add your implementation for editing students here
+}
+
+function deleteStudent(button) {
+    const row = button.closest('tr');
+    const admissionNoCell = row.querySelector('td:nth-child(5)');
+    const admissionNo = admissionNoCell.textContent.trim();
+    let students = JSON.parse(localStorage.getItem('students')) || [];
+    students = students.filter(student => student.admissionNo !== admissionNo);
+    localStorage.setItem('students', JSON.stringify(students));
+    row.remove();
+}
+
+function editSession(button) {
+    const row = button.closest('tr');
+    const sessionNameCell = row.querySelector('td:nth-child(2)');
+    const termCell = row.querySelector('td:nth-child(3)');
+    
+    const newSessionName = prompt('Enter new session name:', sessionNameCell.textContent.trim());
+    const newTerm = prompt('Enter new term:', termCell.textContent.trim());
+
+    if (newSessionName !== null && newSessionName.trim() !== '') {
+        sessionNameCell.textContent = newSessionName.trim();
+    }
+    
+    if (newTerm !== null && newTerm.trim() !== '') {
+        termCell.textContent = newTerm.trim();
+    }
+
+    const sessionIndex = row.rowIndex - 1; 
+    const sessions = JSON.parse(localStorage.getItem('sessions')) || [];
+    if (sessions[sessionIndex]) {
+        sessions[sessionIndex].name = newSessionName.trim();
+        sessions[sessionIndex].term = newTerm.trim();
+        localStorage.setItem('sessions', JSON.stringify(sessions));
+    }
+}
+
+function deleteSession(button) {
+    const row = button.closest('tr');
+    const sessionNameCell = row.querySelector('td:nth-child(2)');
+    const sessionName = sessionNameCell.textContent.trim();
+    let sessions = JSON.parse(localStorage.getItem('sessions')) || [];
+    sessions = sessions.filter(session => session.name !== sessionName);
+    localStorage.setItem('sessions', JSON.stringify(sessions));
+    row.remove();
+}
+
+function editStudent(button) {
+    const row = button.closest('tr');
+    const firstNameCell = row.querySelector('td:nth-child(2)');
+    const middleNameCell = row.querySelector('td:nth-child(3)');
+    const lastNameCell = row.querySelector('td:nth-child(4)');
+    const admissionNoCell = row.querySelector('td:nth-child(5)');
+
+    const newFirstName = prompt('Enter new first name:', firstNameCell.textContent.trim());
+    const newMiddleName = prompt('Enter new middle name:', middleNameCell.textContent.trim());
+    const newLastName = prompt('Enter new last name:', lastNameCell.textContent.trim());
+    const newAdmissionNo = prompt('Enter new admission number:', admissionNoCell.textContent.trim());
+
+    if (newFirstName !== null && newFirstName.trim() !== '') {
+        firstNameCell.textContent = newFirstName.trim();
+    }
+    if (newMiddleName !== null && newMiddleName.trim() !== '') {
+        middleNameCell.textContent = newMiddleName.trim();
+    }
+    if (newLastName !== null && newLastName.trim() !== '') {
+        lastNameCell.textContent = newLastName.trim();
+    }
+    if (newAdmissionNo !== null && newAdmissionNo.trim() !== '') {
+        admissionNoCell.textContent = newAdmissionNo.trim();
+    }
+}
 
 
     </script>
@@ -889,5 +1008,8 @@ function editSession(index) {
     </div>
     
 </body>
+
+</html>
+
 
 </html>
