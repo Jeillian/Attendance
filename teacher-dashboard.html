@@ -87,12 +87,6 @@
                             <span>View Student Attendance</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="#" onclick="loadContent('Report-attendance-term', this)">
-                            <i class="fas fa-plus"></i>
-                            <span>Today's Report</span>
-                        </a>
-                    </li>
                 </ul>
             </li>
             <li class="logout">
@@ -130,7 +124,7 @@
                       <td>SEAN JAMES</td>
                       <td>STA.MARIA</td>
                       <td>ALCOSIN</td>
-                      <td></td>
+                      <td>N/A</td>
                       <td>1</td>
                       <td>1</td>
                       <td>04-24-2024</td>
@@ -154,7 +148,7 @@
                       <td>ARONE GABRIEL</td>
                       <td>SOLLEZA</td>
                       <td>ANCHETA</td>
-                      <td></td>
+                      <td>N/A</td>
                       <td>1</td>
                       <td>1</td>
                       <td>04-24-2024</td>
@@ -838,15 +832,8 @@
             </div>
         </div>
         <div id="Take-attendance-term">
-            <div class="add-class-header">
-                <h2 class="add-class-title">Tagaytay City Science National High School - Integrated Senior High School</h2>
-            </div>
             <div class="header--attendance">
                 <div class="header--title">Attendance:</div>
-                <div class="attendance-date">
-                    <label for="attendanceDate">Date:</label>
-                    <input type="date" id="attendanceDate" value="">
-                </div>
             </div>
                 <div class="table-section">
                     <table id="attendanceTable">
@@ -856,6 +843,7 @@
                                 <th>Name</th>
                                 <th>Middle Name</th>
                                 <th>Last Name</th>
+                                <th>LRN No.</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -865,6 +853,8 @@
                                 <td>SEAN JAMES</td>
                                 <td>STA.MARIA</td>
                                 <td>ALCOSIN</td>
+                                <td>N/A</td>
+
                                 <td>
                                     <select onchange="updateStatus(this)">
                                         <option value="Absent">Absent</option>
@@ -879,6 +869,7 @@
                                 <td>AZRIEL JHON</td>
                                 <td>CONSUELO</td>
                                 <td>ALVERSADO</td>
+                                <td>N/A</td>
                                 <td>
                                     <select onchange="updateStatus(this)">
                                         <option value="Absent">Absent</option>
@@ -893,6 +884,7 @@
                                 <td>ARONE GABRIEL</td>
                                 <td>SOLLEZA</td>
                                 <td>ANCHETA</td>
+                                <td>N/A</td>
                                 <td>
                                     <select onchange="updateStatus(this)">
                                         <option value="Absent">Absent</option>
@@ -906,7 +898,8 @@
             <td>4</td>
             <td>CYRILL ANGELO JR</td>
             <td>TROGON</td>
-            <td>ANTONIO,</td>
+            <td>ANTONIO</td>
+            <td>N/A</td>
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -920,7 +913,8 @@
             <td>5</td>
             <td>MARK DANIELLE JR</td>
             <td>COSTANTE</td>
-            <td>BORILES,</td>
+            <td>BORILES</td>
+            <td>N/A</td>
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -934,7 +928,8 @@
             <td>6</td>
             <td>RENZ MAVERICK</td>
             <td>MENDOZA</td>
-            <td>CELIZ,</td>
+            <td>CELIZ</td>
+            <td>N/A</td>
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -948,7 +943,8 @@
             <td>7</td>
             <td>KYLE CHESTER</td>
             <td>MONREAL</td>
-            <td>CONTRERAS,</td>
+            <td>CONTRERAS</td>
+            <td>N/A</td>
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -963,6 +959,7 @@
             <td>LAWRENCE</td>
             <td>MALABANAN</td>
             <td>DELOS SANTOS</td>
+            <td>N/A</td>
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -976,7 +973,8 @@
             <td>9</td>
             <td>KEVIN GABRIEL</td>
             <td>MERCADO</td>
-            <td>DIONISIO,</td>
+            <td>DIONISIO</td>
+            <td>N/A</td>
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -990,7 +988,8 @@
             <td>10</td>
             <td>GERALD</td>
             <td>MOLIÑAWE</td>
-            <td>DOMINGO,</td>
+            <td>DOMINGO</td>
+            <td>N/A</td>
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -1005,6 +1004,7 @@
             <td>RALPH MATTHEW</td>
             <td>GONZALES</td>
             <td>GALENDEZ</td>
+            <td>N/A</td>
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -1019,6 +1019,7 @@
             <td>MATTHEW</td>
             <td>MANDALONES</td>
             <td>GUANLAO</td>
+            <td>N/A</td>
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -1033,6 +1034,7 @@
             <td>CLARENCE GABRIEL</td>
             <td>YATER</td>
             <td>LOMARDA</td>
+            <td>N/A</td>
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -1047,6 +1049,7 @@
             <td>ADRIAN</td>
             <td>CORTAS</td>
             <td>MENDOZA</td>
+            <td>N/A</td>
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -1061,6 +1064,7 @@
             <td>ANTONIQ III</td>
             <td>GABON</td>
             <td>MORDINO</td>
+            <td>N/A</td>
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -1075,6 +1079,7 @@
             <td>CHRISTIAN KINETH</td>
             <td>FULLO</td>
             <td>NADALA</td>
+            <td>N/A</td>
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -1089,6 +1094,7 @@
             <td>JB ISRAEL</td>
             <td>TERRIBLE</td>
             <td>PAZ</td>
+            <td>N/A</td>
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -1103,6 +1109,7 @@
             <td>RAM ALEXIS</td>
             <td>SALAZAR</td>
             <td>PRADO</td>
+            <td>N/A</td>
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -1116,7 +1123,8 @@
             <td>19</td>
             <td>JERICK</td>
             <td>BARNOBAL</td>
-            <td>QUILANTANG,</td>
+            <td>QUILANTANG</td>
+            <td>N/A</td>
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -1131,6 +1139,7 @@
             <td>JAYVEE</td>
             <td>MORDINO</td>
             <td>SANTOS</td>
+            <td>N/A</td>
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -1145,6 +1154,7 @@
             <td>LANCE DAVID</td>
             <td>NAVAREZ</td>
             <td>SUILAYAO</td>
+            <td>N/A</td>
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -1159,6 +1169,7 @@
             <td>KLENT JASPER</td>
             <td>BARENG</td>
             <td>VILLARES</td>
+            <td>N/A</td>
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -1173,6 +1184,7 @@
             <td>MARK LAWRENCE</td>
             <td>BARENG</td>
             <td>VILLARES</td>
+            <td>N/A</td>
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -1187,6 +1199,7 @@
             <td>JEONY CAZYRA</td>
             <td>FRANCISCO</td>
             <td>AMBROCIO</td>
+            <td>N/A</td>
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -1200,7 +1213,8 @@
             <td>25</td>
             <td>ALLIZA</td>
             <td>PACUAN</td>
-            <td>ANARNA</td>
+            <td>ANARNA</td>  
+            <td>N/A</td>
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -1215,6 +1229,7 @@
             <td>ALYANNA NICOLE</td>
             <td>CAPARAS</td>
             <td>ANARNA</td>
+            <td>N/A</td>
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -1229,6 +1244,7 @@
             <td>JEREMIE CHRYSTEL</td>
             <td>JAVIER</td>
             <td>BAUTISTA</td>
+            <td>N/A</td>
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -1243,6 +1259,8 @@
             <td>ANDREA YSABEL</td>
             <td>GARALDE</td>
             <td>CAYETANO</td>
+            <td>N/A</td>
+
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -1257,6 +1275,8 @@
             <td>LHEI ANNE</td>
             <td>REYES</td>
             <td>DE LA PEÑA</td>
+            <td>N/A</td>
+
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -1271,6 +1291,8 @@
             <td>MA. ANTONETTE</td>
             <td>OLIMPIADA</td>
             <td>DESPE</td>
+            <td>N/A</td>
+
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -1285,6 +1307,8 @@
             <td>STEPHANIE</td>
             <td>DERLA</td>
             <td>ELNAR</td>
+            <td>N/A</td>
+
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -1299,6 +1323,8 @@
             <td>CARLA MARIE</td>
             <td>PRINCIPIO</td>
             <td>GUISI</td>
+            <td>N/A</td>
+
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -1313,6 +1339,8 @@
             <td>PATRICIA GRACE</td>
             <td>ESCOVER</td>
             <td>MAGADDATLI</td>
+            <td>N/A</td>
+
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -1327,6 +1355,8 @@
             <td>CLARISSE JOY</td>
             <td>ARANGALE</td>
             <td>MAYAMAYA</td>
+            <td>N/A</td>
+
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -1341,6 +1371,8 @@
             <td>ALYSSA ASHLEY</td>
             <td>RUEL</td>
             <td>MIRAFLORES</td>
+            <td>N/A</td>
+
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -1355,6 +1387,8 @@
             <td>KIANA FAITH</td>
             <td>FRANCISCO</td>
             <td>MISSION</td>
+            <td>N/A</td>
+
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -1369,6 +1403,8 @@
             <td>MICHAELA</td>
             <td>JABA</td>
             <td>NAZARENO</td>
+            <td>N/A</td>
+
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -1383,6 +1419,8 @@
             <td>ASHLEY NICOLE</td>
             <td>NAVARRO</td>
             <td>NITO</td>
+            <td>N/A</td>
+
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -1397,6 +1435,8 @@
             <td>HAZEL ANN</td>
             <td>VIZCARRA</td>
             <td>ORTILLA</td>
+            <td>N/A</td>
+
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -1411,6 +1451,8 @@
             <td>CRYSTAL CARMELA</td>
             <td>ALTEA</td>
             <td>ORZAME</td>
+            <td>N/A</td>
+
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -1425,6 +1467,8 @@
             <td>CARLENE NICOLE</td>
             <td>DEQUITO</td>
             <td>PALAD</td>
+            <td>N/A</td>
+
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -1439,6 +1483,8 @@
             <td>ANGELINE</td>
             <td>ESCARIOS</td>
             <td>PAMITTAN</td>
+            <td>N/A</td>
+
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -1452,7 +1498,9 @@
             <td>43</td>
             <td>JIANA MAE</td>
             <td>MAGBITANG</td>
-            <td>PELONES,</td>
+            <td>PELONES</td>
+            <td>N/A</td>
+
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -1467,6 +1515,8 @@
             <td>JEILLIAN</td>
             <td>LANCETA</td>
             <td>PEREYRA</td>
+            <td>N/A</td>
+
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -1481,6 +1531,8 @@
             <td>MARITONI</td>
             <td>SORIA</td>
             <td>PIA</td>
+            <td>N/A</td>
+
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -1495,6 +1547,8 @@
             <td>HAZEL ANN</td>
             <td>AUSTRIA</td>
             <td>RODRIGUEZ</td>
+            <td>N/A</td>
+
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -1509,6 +1563,8 @@
             <td>JEAN ZYRA</td>
             <td>GUTIERREZ</td>
             <td>ROGELIO</td>
+            <td>N/A</td>
+
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -1523,6 +1579,8 @@
             <td>JEWELL ISABELLE</td>
             <td>RINT</td>
             <td>ROTAIRO</td>
+            <td>N/A</td>
+
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -1537,6 +1595,8 @@
             <td>IZZY</td>
             <td>ULITIN</td>
             <td>RUIZ</td>
+            <td>N/A</td>
+
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -1551,6 +1611,8 @@
             <td>GYANNE</td>
             <td>ACERON</td>
             <td>SALADAGA</td>
+            <td>N/A</td>
+
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -1565,6 +1627,8 @@
             <td>MHICAELLA MAE</td>
             <td>BAYAS</td>
             <td>SANGALANG</td>
+            <td>N/A</td>
+
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -1579,6 +1643,8 @@
             <td>JUNE AUSTRID</td>
             <td>MAGLAYA</td>
             <td>SANTIAGO</td>
+            <td>N/A</td>
+
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -1593,6 +1659,8 @@
             <td>JANA ALEXA</td>
             <td>AMBION</td>
             <td>SARMIENTO</td>
+            <td>N/A</td>
+
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -1607,6 +1675,8 @@
             <td>JENNALYN</td>
             <td>EXCONDE</td>
             <td>SILVERIO</td>
+            <td>N/A</td>
+
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -1621,6 +1691,8 @@
             <td>JAMAICA</td>
             <td>DALISAY</td>
             <td>SUELTO</td>
+            <td>N/A</td>
+
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -1635,6 +1707,8 @@
             <td>DORIS</td>
             <td>ESTOMAGO</td>
             <td>TAGUINOD</td>
+            <td>N/A</td>
+
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -1649,6 +1723,8 @@
             <td>FRANCHESKA JERZEL</td>
             <td>CARLUM</td>
             <td>TORNO</td>
+            <td>N/A</td>
+
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -1663,6 +1739,8 @@
             <td>LENLEN</td>
             <td>BARITUA</td>
             <td>VALES</td>
+            <td>N/A</td>
+
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -1677,6 +1755,8 @@
             <td>LOREINNE ANN</td>
             <td>MADLANGBAYAN</td>
             <td>VILLANUEVA</td>
+            <td>N/A</td>
+
             <td>
                 <select onchange="updateStatus(this)">
                     <option value="Absent">Absent</option>
@@ -1710,7 +1790,6 @@
                                 <th>Name</th>
                                 <th>Middle Name</th>
                                 <th>Last Name</th>
-                                <th>Action</th>
                                 <th>Status</th>
                                 <th>Date</th>
                             </tr>
@@ -1758,5 +1837,7 @@
     </div>
     
 </body>
+
+</html>
 
 </html>
