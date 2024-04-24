@@ -187,6 +187,51 @@ body {
     align-items: normal;
     margin-top: 20px;
 }
+.add-class-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    background: #70e061;
+    border-radius: 10px;
+    padding: 10px 2rem;
+    margin-bottom: 1rem;
+    font-size: larger;
+    display: flex;
+    flex-direction: column;
+    align-items: normal;
+    margin-top: 20px;
+}
+.table-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    background: #70e061;
+    border-radius: 10px;
+    padding: 10px 2rem;
+    margin-bottom: 1rem;
+    font-size: larger;
+    display: flex;
+    flex-direction: column;
+    align-items: normal;
+    margin-top: 20px;
+}
+.header--attendance {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    background: #70e061;
+    border-radius: 10px;
+    padding: 10px 2rem;
+    margin-bottom: 1rem;
+    font-size: larger;
+    display: flex;
+    flex-direction: column;
+    align-items: normal;
+    margin-top: 20px;
+}
 .save-button {
     background-color: #fff;
     color: black;
@@ -270,4 +315,7 @@ th {
 
 tr:hover {
     background-color: #e0e0e0; /
+}
+.attendance-tabel-body{
+    font-size: medium;
 }
