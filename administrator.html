@@ -528,41 +528,49 @@ function savesession() {
 }
 
 function displaySessions() {
-    let tableBody = document.getElementById('session-table-body');
-    tableBody.innerHTML = '';
+  let tableBody = document.getElementById('session-table-body');
+  tableBody.innerHTML = '';
 
-    sessions.forEach((session, index) => {
-        let row = tableBody.insertRow();
-        let cellIndex = row.insertCell(0);
-        let cellSession = row.insertCell(1);
-        let cellTerm = row.insertCell(2);
-        let cellStatus = row.insertCell(3);
-        let cellDate = row.insertCell(4);
-        let cellActivate = row.insertCell(5);
-        let cellEdit = row.insertCell(6);
-        let cellDelete = row.insertCell(7);
+  sessions.forEach((session, index) => {
+    let row = tableBody.insertRow();
+    let cellIndex = row.insertCell(0);
+    let cellSession = row.insertCell(1);
+    let cellTerm = row.insertCell(2);
+    let cellStatus = row.insertCell(3);
+    let cellDate = row.insertCell(4);
+    let cellEdit = row.insertCell(5);
+    let cellDelete = row.insertCell(6);
 
-        cellIndex.innerHTML = index + 1;
-        cellSession.innerHTML = session.name;
-        cellTerm.innerHTML = session.term;
-        cellStatus.innerHTML = session.active ? 'Active' : 'Inactive';
-        cellDate.innerHTML = session.date;
+    cellIndex.innerHTML = index + 1;
+    cellSession.innerHTML = session.name;
+    cellTerm.innerHTML = session.term;
+    cellDate.innerHTML = session.date;
 
-        let activateButton = document.createElement('button');
-        activateButton.innerText = 'Activate';
-        activateButton.onclick = () => activateSession(index);
-        cellActivate.appendChild(activateButton);
+    let activateCheckbox = document.createElement('input');
+    activateCheckbox.type = 'checkbox';
+    activateCheckbox.checked = session.active;
+    activateCheckbox.onchange = () => updateSessionStatus(index, activateCheckbox.checked);
+    cellStatus.appendChild(activateCheckbox);
 
-        let editButton = document.createElement('button');
-        editButton.innerText = 'Edit';
-        editButton.onclick = () => editSession(index);
-        cellEdit.appendChild(editButton);
+    let statusText = document.createElement('span');
+    statusText.textContent = session.active ? 'Active' : 'Inactive';
+    cellStatus.appendChild(statusText);
 
-        let deleteButton = document.createElement('button');
-        deleteButton.innerText = 'Delete';
-        deleteButton.onclick = () => deleteSession(index);
-        cellDelete.appendChild(deleteButton);
-    });
+    let editButton = document.createElement('button');
+    editButton.innerText = 'Edit';
+    editButton.onclick = () => editSession(index);
+    cellEdit.appendChild(editButton);
+
+    let deleteButton = document.createElement('button');
+    deleteButton.innerText = 'Delete';
+    deleteButton.onclick = () => deleteSession(index);
+    cellDelete.appendChild(deleteButton);
+  });
+}
+function updateSessionStatus(index, isActive) {
+  sessions[index].active = isActive;
+  localStorage.setItem('sessions', JSON.stringify(sessions));
+  displaySessions();
 }
 
 function activateSession(index) {
@@ -701,7 +709,10 @@ function editStudent(button) {
     }
 }
 
-
+  function logout() {
+    // Redirect to the login page
+    window.location.href = "index.html";
+  }
     </script>
     
     
@@ -792,7 +803,9 @@ function editStudent(button) {
                     </li>
                 </ul>
             </li>
-            <li id="logout" class="logout"><a href="#">Log out</a></li>
+            <li id="logout" class="logout">
+                <a href="#" onclick="logout()">Log out</a>
+              </li>
         </ul>
     </div>
 
@@ -995,7 +1008,6 @@ function editStudent(button) {
                                 <th>Term</th>
                                 <th>Status</th>
                                 <th>Date </th>
-                                <th>Activate </th>
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
@@ -1008,8 +1020,5 @@ function editStudent(button) {
     </div>
     
 </body>
-
-</html>
-
 
 </html>
