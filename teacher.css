@@ -98,6 +98,28 @@ body {
     margin-bottom: 1rem;
     font-size: larger;
 }
+.attendance-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    background: #70e061;
+    border-radius: 10px;
+    padding: 10px 2rem;
+    margin-bottom: 1rem;
+    font-size: larger;
+}
+.class-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    background: #70e061;
+    border-radius: 10px;
+    padding: 10px 2rem;
+    margin-bottom: 1rem;
+    font-size: larger;
+}
 
 .header--wrapper img{
     width: 25px;
