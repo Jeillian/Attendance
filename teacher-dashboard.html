@@ -40,8 +40,6 @@
             }
         }
         loadContent('dashboard-content', document.querySelector('.menu > li > a'));
-        
-        
     </script>
 </head>
 
@@ -49,12 +47,6 @@
     <div class="sidebar">
         <div class="logo"></div>
         <ul class="menu">
-            <li class="active">
-                <a href="#" onclick="loadContent('dashboard-content', this)">
-                    <i class="fas fa-desktop"></i>
-                    <span>Home</span>
-                </a>
-            </li>
             <li class="manage-students">
                 <a href="#" onclick="toggleManageStudentsDropdown(); loadContent('View-students-content', this)">
                     <i class="fas fa-user-graduate"></i>
@@ -113,15 +105,6 @@
     </div>
     <div class="main--content" id="mainContent">
     <div class="content">
-        <div id="dashboard-content">
-            <div class="header--wrapper">
-                <div class="search">
-                    <i class="fa-solid fa-search"></i>
-                    <input type="text" placeholder="search"/>
-                </div>
-                <img src="OIP.jpg" alt="">
-            </div>
-        </div>
         <div id="View-students-content" style="display: none;">
             <h1>All Students</h1>
             <div class="student-header">
@@ -602,7 +585,7 @@
   <td>39</td>
   <td>HAZEL ANN</td>
   <td>VIZCARRA</td>
-  <td>ORTILLA,</td>
+  <td>ORTILLA</td>
   <td>N/A</td>
   <td>1</td>
   <td>1</td>
@@ -855,26 +838,858 @@
             </div>
         </div>
         <div id="Take-attendance-term">
-            <h2 id="attendance-header">Take Attendance </h2>
-            <div class="attendance-header">
-                <p>All Student </p>
-                <table id="student-table">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>First Name</th>
-                            <th>Middle Name</th>
-                            <th>Last Name</th>
-                            <th>Admission No</th>
-                            <th> Class</th>
-                            <th> Class Arm</th>
-                            <th>Check</th>
-                        </tr>
-                    </thead>
-                    <tbody id="attendance-table-body">
-                    </tbody>
-                </table>
+            <div class="add-class-header">
+                <h2 class="add-class-title">Tagaytay City Science National High School - Integrated Senior High School</h2>
             </div>
+            <div class="header--attendance">
+                <div class="header--title">Attendance:</div>
+                <div class="attendance-date">
+                    <label for="attendanceDate">Date:</label>
+                    <input type="date" id="attendanceDate" value="">
+                </div>
+            </div>
+                <div class="table-section">
+                    <table id="attendanceTable">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Middle Name</th>
+                                <th>Last Name</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="attendanceTableBody">
+                            <tr>
+                                <td>1</td>
+                                <td>SEAN JAMES</td>
+                                <td>STA.MARIA</td>
+                                <td>ALCOSIN</td>
+                                <td>
+                                    <select onchange="updateStatus(this)">
+                                        <option value="Absent">Absent</option>
+                                        <option value="Present">Present</option>
+                                        <option value="Late">Late</option>
+                                        <option value="Excuse">Excuse</option>
+                                    </select>
+                                </td>
+                                </tr>
+                                <tr>
+                                <td>2</td>
+                                <td>AZRIEL JHON</td>
+                                <td>CONSUELO</td>
+                                <td>ALVERSADO</td>
+                                <td>
+                                    <select onchange="updateStatus(this)">
+                                        <option value="Absent">Absent</option>
+                                        <option value="Present">Present</option>
+                                        <option value="Late">Late</option>
+                                        <option value="Excuse">Excuse</option>
+                                    </select>
+                                </td>
+                                </tr>
+                                <tr>
+                                <td>3</td>
+                                <td>ARONE GABRIEL</td>
+                                <td>SOLLEZA</td>
+                                <td>ANCHETA</td>
+                                <td>
+                                    <select onchange="updateStatus(this)">
+                                        <option value="Absent">Absent</option>
+                                        <option value="Present">Present</option>
+                                        <option value="Late">Late</option>
+                                        <option value="Excuse">Excuse</option>
+                                    </select>
+                                </td>
+                                </tr>
+                                <tr>
+            <td>4</td>
+            <td>CYRILL ANGELO JR</td>
+            <td>TROGON</td>
+            <td>ANTONIO,</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>MARK DANIELLE JR</td>
+            <td>COSTANTE</td>
+            <td>BORILES,</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>RENZ MAVERICK</td>
+            <td>MENDOZA</td>
+            <td>CELIZ,</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>KYLE CHESTER</td>
+            <td>MONREAL</td>
+            <td>CONTRERAS,</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>LAWRENCE</td>
+            <td>MALABANAN</td>
+            <td>DELOS SANTOS</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>9</td>
+            <td>KEVIN GABRIEL</td>
+            <td>MERCADO</td>
+            <td>DIONISIO,</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>10</td>
+            <td>GERALD</td>
+            <td>MOLIÑAWE</td>
+            <td>DOMINGO,</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>11</td>
+            <td>RALPH MATTHEW</td>
+            <td>GONZALES</td>
+            <td>GALENDEZ</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>12</td>
+            <td>MATTHEW</td>
+            <td>MANDALONES</td>
+            <td>GUANLAO</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>13</td>
+            <td>CLARENCE GABRIEL</td>
+            <td>YATER</td>
+            <td>LOMARDA</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>14</td>
+            <td>ADRIAN</td>
+            <td>CORTAS</td>
+            <td>MENDOZA</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>15</td>
+            <td>ANTONIQ III</td>
+            <td>GABON</td>
+            <td>MORDINO</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>16</td>
+            <td>CHRISTIAN KINETH</td>
+            <td>FULLO</td>
+            <td>NADALA</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>17</td>
+            <td>JB ISRAEL</td>
+            <td>TERRIBLE</td>
+            <td>PAZ</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>18</td>
+            <td>RAM ALEXIS</td>
+            <td>SALAZAR</td>
+            <td>PRADO</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>19</td>
+            <td>JERICK</td>
+            <td>BARNOBAL</td>
+            <td>QUILANTANG,</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>20</td>
+            <td>JAYVEE</td>
+            <td>MORDINO</td>
+            <td>SANTOS</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>21</td>
+            <td>LANCE DAVID</td>
+            <td>NAVAREZ</td>
+            <td>SUILAYAO</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>22</td>
+            <td>KLENT JASPER</td>
+            <td>BARENG</td>
+            <td>VILLARES</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>23</td>
+            <td>MARK LAWRENCE</td>
+            <td>BARENG</td>
+            <td>VILLARES</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>24</td>
+            <td>JEONY CAZYRA</td>
+            <td>FRANCISCO</td>
+            <td>AMBROCIO</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>25</td>
+            <td>ALLIZA</td>
+            <td>PACUAN</td>
+            <td>ANARNA</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>26</td>
+            <td>ALYANNA NICOLE</td>
+            <td>CAPARAS</td>
+            <td>ANARNA</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>27</td>
+            <td>JEREMIE CHRYSTEL</td>
+            <td>JAVIER</td>
+            <td>BAUTISTA</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>28</td>
+            <td>ANDREA YSABEL</td>
+            <td>GARALDE</td>
+            <td>CAYETANO</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>29</td>
+            <td>LHEI ANNE</td>
+            <td>REYES</td>
+            <td>DE LA PEÑA</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>30</td>
+            <td>MA. ANTONETTE</td>
+            <td>OLIMPIADA</td>
+            <td>DESPE</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>31</td>
+            <td>STEPHANIE</td>
+            <td>DERLA</td>
+            <td>ELNAR</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>32</td>
+            <td>CARLA MARIE</td>
+            <td>PRINCIPIO</td>
+            <td>GUISI</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>33</td>
+            <td>PATRICIA GRACE</td>
+            <td>ESCOVER</td>
+            <td>MAGADDATLI</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>34</td>
+            <td>CLARISSE JOY</td>
+            <td>ARANGALE</td>
+            <td>MAYAMAYA</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>35</td>
+            <td>ALYSSA ASHLEY</td>
+            <td>RUEL</td>
+            <td>MIRAFLORES</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>36</td>
+            <td>KIANA FAITH</td>
+            <td>FRANCISCO</td>
+            <td>MISSION</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>37</td>
+            <td>MICHAELA</td>
+            <td>JABA</td>
+            <td>NAZARENO</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>38</td>
+            <td>ASHLEY NICOLE</td>
+            <td>NAVARRO</td>
+            <td>NITO</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>39</td>
+            <td>HAZEL ANN</td>
+            <td>VIZCARRA</td>
+            <td>ORTILLA</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>40</td>
+            <td>CRYSTAL CARMELA</td>
+            <td>ALTEA</td>
+            <td>ORZAME</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>41</td>
+            <td>CARLENE NICOLE</td>
+            <td>DEQUITO</td>
+            <td>PALAD</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>42</td>
+            <td>ANGELINE</td>
+            <td>ESCARIOS</td>
+            <td>PAMITTAN</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>43</td>
+            <td>JIANA MAE</td>
+            <td>MAGBITANG</td>
+            <td>PELONES,</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>44</td>
+            <td>JEILLIAN</td>
+            <td>LANCETA</td>
+            <td>PEREYRA</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>45</td>
+            <td>MARITONI</td>
+            <td>SORIA</td>
+            <td>PIA</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>46</td>
+            <td>HAZEL ANN</td>
+            <td>AUSTRIA</td>
+            <td>RODRIGUEZ</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>47</td>
+            <td>JEAN ZYRA</td>
+            <td>GUTIERREZ</td>
+            <td>ROGELIO</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>48</td>
+            <td>JEWELL ISABELLE</td>
+            <td>RINT</td>
+            <td>ROTAIRO</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>49</td>
+            <td>IZZY</td>
+            <td>ULITIN</td>
+            <td>RUIZ</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>50</td>
+            <td>GYANNE</td>
+            <td>ACERON</td>
+            <td>SALADAGA</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>51</td>
+            <td>MHICAELLA MAE</td>
+            <td>BAYAS</td>
+            <td>SANGALANG</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>52</td>
+            <td>JUNE AUSTRID</td>
+            <td>MAGLAYA</td>
+            <td>SANTIAGO</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>53</td>
+            <td>JANA ALEXA</td>
+            <td>AMBION</td>
+            <td>SARMIENTO</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>54</td>
+            <td>JENNALYN</td>
+            <td>EXCONDE</td>
+            <td>SILVERIO</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>55</td>
+            <td>JAMAICA</td>
+            <td>DALISAY</td>
+            <td>SUELTO</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>56</td>
+            <td>DORIS</td>
+            <td>ESTOMAGO</td>
+            <td>TAGUINOD</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>57</td>
+            <td>FRANCHESKA JERZEL</td>
+            <td>CARLUM</td>
+            <td>TORNO</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>58</td>
+            <td>LENLEN</td>
+            <td>BARITUA</td>
+            <td>VALES</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>
+          <tr>
+            <td>59</td>
+            <td>LOREINNE ANN</td>
+            <td>MADLANGBAYAN</td>
+            <td>VILLANUEVA</td>
+            <td>
+                <select onchange="updateStatus(this)">
+                    <option value="Absent">Absent</option>
+                    <option value="Present">Present</option>
+                    <option value="Late">Late</option>
+                    <option value="Excuse">Excuse</option>
+                </select>
+            </td>
+          </tr>     
+                        </tbody>
+                    </table>
+                    <button onclick="saveAttendance()">Save Attendance</button>
+                 </div>
           </div>
         <div id="View-class-attendance-term" style="display: none;">
             <h2>View Class Attendance</h2>
@@ -892,20 +1707,14 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>First Name</th>
+                                <th>Name</th>
                                 <th>Middle Name</th>
                                 <th>Last Name</th>
-                                <th>Admission No</th>
-                                <th> Class</th>
-                                <th> Class Arm</th>
-                                <th>Session</th>
-                                <th>Term</th>
+                                <th>Action</th>
                                 <th>Status</th>
                                 <th>Date</th>
                             </tr>
                         </thead>
-                        <tbody id="attendance-table-body">
-                        </tbody>
                     </table>
                 </div>
         </div>
